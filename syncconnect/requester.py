@@ -3,6 +3,18 @@ import requests
 from . import exceptions as E
 
 def call(method, url, **kwargs):
+    """ Attachs the kwargs into the headers, sends the request to the Ford API's
+        and handles all error cases.
+
+    Args:
+        method (str): HTTP method
+        url (str): url of the request
+        **kwargs: parameters for the request
+
+    Returns:
+        Response: response from the request to the Ford API's
+    """
+    
     response = requests.request(method, url, timeout=310, **kwargs)
     code = response.status_code
 

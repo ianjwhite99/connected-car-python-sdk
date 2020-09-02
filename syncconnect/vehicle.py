@@ -4,51 +4,380 @@ from . import const
 class Vehicle(object):
 
     def __init__(self, vehicle_id, access_token):
+        """ Initialize a new Vehicle object to directly make requests to Ford.
+        
+        Args:
+            vehicle_id (str): Vehicle identification number
+            access_token (str): Sync Connect access token
+        """
         self.access_token = access_token
         self.vehicle_id = vehicle_id
         self.api = Api(access_token)
 
-    def vin_info(self):
+    def info(self):
+        """ GET Vehicle.info
+        
+        Returns:
+            Response: Vehicle information
+
+        Raises:
+            SyncException
+
+        """
+
         response = self.api.get(const.VEHICLE_URL, 'vinlookup/v1/vins/'+self.vehicle_id+'/detail?country=USA&language=EN')
         return response.json()
 
-    # Not Working
     def status(self):
+        """ GET Vehicle.status
+        
+        Returns:
+            Response: Current vehicle status
+
+        Raises:
+            SyncException
+
+        """
+
         response = self.api.get(const.API_URL, 'vehicles/v4/'+self.vehicle_id+'/status?lrdt=01-01-1970%2000:00:00')
         return response.json()
 
+    def refresh_status(self):
+        """ GET Vehicle.refresh_status
+        
+        Returns:
+            Response: Refresh vehicle status
+
+        Raises:
+            SyncException
+
+        """
+
+        response = self.api.get(const.API_URL, 'vehicles/v3/'+self.vehicle_id+'/statusrefresh/ffe168a3-657f-4b74-9668-909c60e2379f')
+        return response.json()
+
     def send_auth(self):
+        """ POST Vehicle.send_auth
+        
+        Returns:
+            Response: Send vehicle authorization
+
+        Raises:
+            SyncException
+
+        """
+
         response = self.api.post(const.API_URL, 'vehicles/v2/'+self.vehicle_id+'/drivers', None)
         return response
 
     def auth_status(self):
+        """ GET Vehicle.auth_status
+        
+        Returns:
+            Response: Vehicle authorization status
+
+        Raises:
+            SyncException
+
+        """
+
         response = self.api.get(const.API_URL, 'vehicles/'+self.vehicle_id+'/authstatus?lrdt=01-01-1970%2000:00:00')
         return response.json()
 
     def details(self):
+        """ GET Vehicle.detials
+        
+        Returns:
+            Response: Vehicle details
+
+        Raises:
+            SyncException
+
+        """
+
         response = self.api.get(const.API_URL, 'users/vehicles/'+self.vehicle_id+'/detail?lrdt=01-01-1970%2000:00:00')
         return response.json()
 
-    # Not Working
+    def recalls(self):
+        """ GET Vehicle.recalls
+        
+        Returns:
+            Response: Vehicle's active recalls
+
+        Raises:
+            SyncException
+
+        """
+
+        response = self.api.get(const.API_URL, 'recall/v2/recalls?vin='+self.vehicle_id+'&language=EN&region=US&country=USA')
+        return response.json()
+
+    def maintenance_schedule(self):
+        """ GET Vehicle.maintenance_schedule
+        
+        Returns:
+            Response: Vehicle maintenance schedule
+
+        Raises:
+            SyncException
+
+        """
+
+        response = self.api.get(const.API_URL, 'vehiclemaintenance/v1/maintenance-schedule?vin='+self.vehicle_id+'&language=EN&country=USA')
+        return response.json()
+
+    def capability(self):
+        """ GET Vehicle.capability
+        
+        Returns:
+            Response: Vehicle capabilities
+
+        Raises:
+            SyncException
+
+        """
+
+        response = self.api.get(const.API_URL, 'capability/v1/vehicles/'+self.vehicle_id)
+        return response.json()
+
+    def vin(self):
+        """ GET Vehicle.vin
+        
+        Returns:
+            Response: Vehicle vin
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['vin']}
+
+    def odometer(self):
+        """ GET Vehicle.odometer
+        
+        Returns:
+            Response: Vehicle odometer
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['odometer']}
+
+    def fuel(self):
+        """ GET Vehicle.fuel
+        
+        Returns:
+            Response: Vehicle fuel level
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['gps']}
+
+    def oil(self):
+        """ GET Vehicle.oil
+        
+        Returns:
+            Response: Vehicle oil life
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['oil']}
+
+    def tire_pressure(self):
+        """ GET Vehicle.tire_pressure
+        
+        Returns:
+            Response: Vehicle tire pressure
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['TPMS']}
+
+    def battery(self):
+        """ GET Vehicle.battery
+        
+        Returns:
+            Response: Vehicle battery status
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['battery']}
+
+    def location(self):
+        """ GET Vehicle.location
+        
+        Returns:
+            Response: Vehicle location
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['fuel']}
+
+    def window_positions(self):
+        """ GET Vehicle.window_position
+        
+        Returns:
+            Response: Vehicle window positions
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['windowPosition']}
+
+    def door_status(self):
+        """ GET Vehicle.door_status
+        
+        Returns:
+            Response: Vehicle doors status
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['doorStatus']}
+
+    def lock_status(self):
+        """ GET Vehicle.lock_Status
+        
+        Returns:
+            Response: Vehicle lock status
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['lockStatus']}
+
+    def alarm_status(self):
+        """ GET Vehicle.alarm_status
+        
+        Returns:
+            Response: Vehicle alarm status
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['alarm']}
+
+    def ignition_status(self):
+        """ GET Vehicle.ignition_status
+        
+        Returns:
+            Response: Vehicle ignition status
+
+        Raises:
+            SyncException
+
+        """
+
+        json = self.status()
+        return {"data": json['vehiclestatus']['ignitionStatus']}
+
+    def wakeup(self):
+        """ GET Vehicle.wakeup
+        
+        Returns:
+            Response: response from the request to the Ford API
+
+        Raises:
+            SyncException
+
+        """
+
+        response = self.api.action('GET', const.USER_URL, 'dashboard/v1/users/vehicles?language=EN&wakeupVin='+self.vehicle_id+'&skipRecall=true&country=USA&region=US')
+        return response.json()
+
     def start(self):
+        """ PUT/GET Vehicle.start
+        
+        Returns:
+            Response: response from the request to the Ford API
+
+        Raises:
+            SyncException
+
+        """
+
         job_id = self.api.action('PUT', const.API_URL, 'vehicles/v2/'+self.vehicle_id+'/engine/start').json()['commandId']
         response = self.api.action('GET', const.API_URL, 'vehicles/'+self.vehicle_id+'/engine/start/'+job_id)
         return response.json()
     
-    # Not Working
     def stop(self):
+        """ DELETE/GET Vehicle.stop
+        
+        Returns:
+            Response: response from the request to the Ford API
+
+        Raises:
+            SyncException
+
+        """
+
         job_id = self.api.action('DELETE', const.API_URL, 'vehicles/v2/'+self.vehicle_id+'/engine/start').json()['commandId']
         response = self.api.action('GET', const.API_URL, 'vehicles/'+self.vehicle_id+'/engine/start/'+job_id)
         return response.json()
 
-    # Not Working
     def lock(self):
+        """ PUT/GET Vehicle.lock
+        
+        Returns:
+            Response: response from the request to the Ford API
+
+        Raises:
+            SyncException
+
+        """
+
         job_id = self.api.action('PUT', const.API_URL, 'vehicles/v2/'+self.vehicle_id+'/doors/lock').json()['commandId']
         response = self.api.action('GET', const.API_URL, 'vehicles/'+self.vehicle_id+'/doors/lock/'+job_id)
         return response.json()
 
-    # Not Working
     def unlock(self):
+        """ DELETE/GET Vehicle.unlock
+        
+        Returns:
+            Response: response from the request to the Ford API
+
+        Raises:
+            SyncException
+
+        """
+
         job_id = self.api.action('DELETE', const.API_URL, 'vehicles/v2/'+self.vehicle_id+'/doors/lock').json()['commandId']
         response = self.api.action('GET', const.API_URL, 'vehicles/'+self.vehicle_id+'/doors/lock/'+job_id)
         return response.json()
