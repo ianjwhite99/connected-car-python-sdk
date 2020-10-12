@@ -6,7 +6,6 @@ build/
 __pycache__/
 *.py[cod]
 **/flask
-main.py
 
 # System generated files
 *.log
