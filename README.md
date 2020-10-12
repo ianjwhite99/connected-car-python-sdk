@@ -44,4 +44,4 @@ vehicle = syncconnect.Vehicle(vehicle_id, access_token)
 vehicleInfo = vehicle.info()
 ```
 
-* For a lot more examples on what you can do a Sync Connected car, see the [examples](/examples) folder or take a peek at the [documentation](/docs).
+* For a lot more examples on what you can do a Sync Connected car, see the [examples](/examples) folder or take a peek at the [documentation](/docs) after you clone the project.
