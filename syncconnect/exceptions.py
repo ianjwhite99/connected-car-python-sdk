@@ -3,7 +3,7 @@ class SyncException(Exception):
     def __init__(self, response):
         json = response.json()
         if 'error' in json:
-            self.message = json['error']['message']
+            self.message = json['error']
         elif 'message' in json:
             self.message = json['message']
         else:
