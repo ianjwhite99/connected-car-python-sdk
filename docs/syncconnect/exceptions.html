@@ -31,7 +31,7 @@
     def __init__(self, response):
         json = response.json()
         if &#39;error&#39; in json:
-            self.message = json[&#39;error&#39;][&#39;message&#39;]
+            self.message = json[&#39;error&#39;]
         elif &#39;message&#39; in json:
             self.message = json[&#39;message&#39;]
         else:
@@ -285,7 +285,7 @@ class GatewayTimeoutException(SyncException):
     def __init__(self, response):
         json = response.json()
         if &#39;error&#39; in json:
-            self.message = json[&#39;error&#39;][&#39;message&#39;]
+            self.message = json[&#39;error&#39;]
         elif &#39;message&#39; in json:
             self.message = json[&#39;message&#39;]
         else:
