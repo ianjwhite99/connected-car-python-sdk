@@ -208,7 +208,7 @@ class Vehicle(object):
         &#34;&#34;&#34;
 
         json = self.status()
-        return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;gps&#39;]}
+        return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;fuel&#39;]}
 
     def oil(self):
         &#34;&#34;&#34; GET Vehicle.oil
@@ -264,7 +264,7 @@ class Vehicle(object):
         &#34;&#34;&#34;
 
         json = self.status()
-        return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;fuel&#39;]}
+        return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;gps&#39;]}
 
     def window_positions(self):
         &#34;&#34;&#34; GET Vehicle.window_position
@@ -616,7 +616,7 @@ class Vehicle(object):
         &#34;&#34;&#34;
 
         json = self.status()
-        return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;gps&#39;]}
+        return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;fuel&#39;]}
 
     def oil(self):
         &#34;&#34;&#34; GET Vehicle.oil
@@ -672,7 +672,7 @@ class Vehicle(object):
         &#34;&#34;&#34;
 
         json = self.status()
-        return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;fuel&#39;]}
+        return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;gps&#39;]}
 
     def window_positions(self):
         &#34;&#34;&#34; GET Vehicle.window_position
@@ -1034,7 +1034,7 @@ class Vehicle(object):
     &#34;&#34;&#34;
 
     json = self.status()
-    return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;gps&#39;]}</code></pre>
+    return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;fuel&#39;]}</code></pre>
 </details>
 </dd>
 <dt id="syncconnect.vehicle.Vehicle.ignition_status"><code class="name flex">
@@ -1127,7 +1127,7 @@ class Vehicle(object):
     &#34;&#34;&#34;
 
     json = self.status()
-    return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;fuel&#39;]}</code></pre>
+    return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;gps&#39;]}</code></pre>
 </details>
 </dd>
 <dt id="syncconnect.vehicle.Vehicle.lock"><code class="name flex">

@@ -180,7 +180,7 @@ class Vehicle(object):
         """
 
         json = self.status()
-        return {"data": json['vehiclestatus']['gps']}
+        return {"data": json['vehiclestatus']['fuel']}
 
     def oil(self):
         """ GET Vehicle.oil
@@ -236,7 +236,7 @@ class Vehicle(object):
         """
 
         json = self.status()
-        return {"data": json['vehiclestatus']['fuel']}
+        return {"data": json['vehiclestatus']['gps']}
 
     def window_positions(self):
         """ GET Vehicle.window_position
