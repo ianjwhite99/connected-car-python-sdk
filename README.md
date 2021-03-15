@@ -56,12 +56,16 @@ user = syncconnect.User(access['access_token'])
 
 Use `user.vehicles()` to return an array of all the vehicles associated with a users account. The response will include the **vehicle vin**.
 ```python
-vehicles = user.vehicles()
+vehicleList = [] # Array of vehicles
+
+for userVehicle in vehicles: # For each user vehicle
+    vehicleList.insert(0, userVehicle['vin'])
+    break;
 ```
 
 Now with a **vehicle vin** in hand, use `syncconnect.Vehicle()` to get a Vehicle object representing the user's vehicle.
 ```python
-currentVehicle = syncconnect.Vehicle(vehicles[0], access['access_token'])
+currentVehicle = syncconnect.Vehicle(vehicleList[0], access['access_token'])
 ```
 
 Now you can ask the car to do things, or ask it for some data! For example:
