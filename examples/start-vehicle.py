@@ -9,8 +9,9 @@ vehicles = user.vehicles() # Fetch list of user vehicles
 
 vehicleList = [] # Stored list of user vehicles
 
-for userVehicle in vehicles: # For each user vehicle
+for userVehicle in vehicles:  # For each user vehicle
     vehicleList.insert(0, userVehicle['vin'])
+    break
 
 currentVehicle = syncconnect.Vehicle(vehicleList[0], access['access_token']) # Create vehicle object
 print(currentVehicle.start()) # Send start command
