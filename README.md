@@ -11,6 +11,10 @@ To make requests to a vehicle, the end user must connect their vehicle using the
 python3 -m pip install syncconnect
 ```
 
+## Documentation
+
+Extensive documentation regarding the SDK use cases and the available functions can be found on [GitHub Pages](https://ianjwhite99.github.io/sync-connect-sdk/).
+
 ## Overall Usage
 
 * Import the sdk `import syncconnect`
@@ -44,4 +48,4 @@ vehicle = syncconnect.Vehicle(vehicle_id, access_token)
 vehicleInfo = vehicle.info()
 ```
 
-* For a lot more examples on what you can do a Sync Connected car, see the [examples](/examples) folder or take a peek at the [documentation](/docs) after you clone the project.
+* For a lot more examples on what you can do a Sync Connected car, see the [examples](/examples) folder or take a peek at the [documentation](https://ianjwhite99.github.io/sync-connect-sdk/) after you clone the project.
