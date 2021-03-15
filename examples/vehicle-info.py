@@ -1,6 +1,7 @@
 import syncconnect
 
-client = syncconnect.AuthClient('<client-id>', None, None) # Create client connection
+client = syncconnect.AuthClient(
+    '9fb503e0-715b-47e8-adfd-ad4b7770f73b', None, None)  # Create client connection
 access = client.get_user_access_token('<username>', '<password>') # Fetch client access token
 
 user = syncconnect.User(access['access_token']) # New User Object
