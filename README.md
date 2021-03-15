@@ -8,7 +8,7 @@ To make requests to a vehicle, the end user must connect their vehicle using the
 
 ## Installation
 ```
-pip install syncconnect
+python3 -m pip install syncconnect
 ```
 
 ## Overall Usage

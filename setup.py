@@ -30,7 +30,7 @@ setup(
     author='Ian White',
     author_email='ianjwhite99@gmail.com',
     packages=['syncconnect'],
-    url='https://github.com/ianjwhite99/sync-connect',
+    url='https://github.com/ianjwhite99/sync-connect-sdk',
     license='MIT',
     install_requires=[
         'requests'

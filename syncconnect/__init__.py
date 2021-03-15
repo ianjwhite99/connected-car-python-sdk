@@ -6,7 +6,7 @@ new vehicles, edit current vehicles, return vehicle information, send
 vehicle commands and return user information.
 """
 
-__version__ = '1.3'
+__version__ = '1.0.0'
 
 from .syncconnect import (AuthClient)
 from .user import User
