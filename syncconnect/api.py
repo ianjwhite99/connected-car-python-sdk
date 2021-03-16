@@ -10,9 +10,13 @@ class Api(object):
         """
         self.access_token = access_token
         self.auth = {
+            'auth-token': access_token,
+            'Accept': '*/*',
+            'Accept-Language': 'en-US',
+            'User-Agent': 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
             'Content-Type': 'application/json',
-            'application-id': const.APP_ID,
-            'auth-token': access_token
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Application-Id': const.APP_ID
         }
 
     def _format(self, endpoint, context):
