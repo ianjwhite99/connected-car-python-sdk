@@ -1,6 +1,6 @@
 ![Sync Connect Python SDK Logo](https://user-images.githubusercontent.com/35158392/111222780-4bf1bb80-85aa-11eb-8be2-271ae5f32936.png)
 
-The Sync Connect Python SDK is an open-source, python library that provides the ability to send commands to your Ford Sync Connect connected vehicle.
+The Sync Connect Python SDK is an open-source, python package that provides the ability to send commands to your Ford Sync Connect connected vehicle.
 
 # Requirements
 To make requests to a vehicle, the end user must have signed up for an account using [Ford Pass](https://owner.ford.com/fordpass/fordpass-sync-connect.html). These credentials will be used to authenticate your requests.
@@ -60,7 +60,7 @@ vehicleList = [] # Array of vehicles
 
 for userVehicle in vehicles: # For each user vehicle
     vehicleList.insert(0, userVehicle['vin'])
-    break;
+    break
 ```
 
 Now with a **vehicle vin** in hand, use `syncconnect.Vehicle()` to get a Vehicle object representing the user's vehicle.
