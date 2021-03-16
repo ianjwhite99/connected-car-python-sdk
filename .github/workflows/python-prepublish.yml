@@ -5,7 +5,7 @@ name: Upload Pre-release Package
 
 on:
   release:
-    types: [released]
+    types: [prerelease]
 
 jobs:
   deploy:
