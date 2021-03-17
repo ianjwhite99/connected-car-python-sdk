@@ -9,8 +9,6 @@ class SyncException(Exception):
                 self.message = json['message']
             elif 'error_description' in json:
                 self.message = json['error_description']
-            elif 'error' in json['message']:
-                self.message = json['error']
         elif type(response) is str:
             self.message = response
 

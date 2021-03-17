@@ -32,8 +32,6 @@ def call(method, url, **kwargs):
             raise E.PermissionException(response)
         elif code == 404:
             raise E.ResourceNotFoundException(response)
-        elif code == 409:
-            raise E.StateException(response)
         elif code == 429:
             raise E.RateLimitingException(response)
         elif code == 500:
