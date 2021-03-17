@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.1" />
+<meta name="generator" content="pdoc 0.9.2" />
 <title>syncconnect.exceptions API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -26,62 +26,40 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class SyncException(Exception):
+<pre><code class="python">import requests
+class SyncException(Exception):
 
     def __init__(self, response):
-        json = response.json()
-        if &#39;error&#39; in json:
-            self.message = json[&#39;error&#39;]
-        elif &#39;message&#39; in json:
-            self.message = json[&#39;message&#39;]
-        else:
-            self.message = &#39;Unknown Error&#39;
+        self.message = &#39;Unknown error&#39;
+        if type(response) is requests.models.Response:
+            json = response.json()
+            if &#39;message&#39; in json:
+                self.message = json[&#39;message&#39;]
+            elif &#39;error_description&#39; in json:
+                self.message = json[&#39;error_description&#39;]
+        elif type(response) is str:
+            self.message = response
 
     def __str__(self):
         return self.message
 
-
 class ValidationException(SyncException):
     pass
-
 
 class AuthenticationException(SyncException):
     pass
 
-
 class PermissionException(SyncException):
     pass
-
 
 class ResourceNotFoundException(SyncException):
     pass
 
-
-class StateException(SyncException):
-    def __init__(self, response):
-        super(StateException, self).__init__(response)
-        json = response.json()
-        self.code = json[&#39;code&#39;]
-
-    def __str__(self):
-        return self.code + &#39;: &#39; + self.message
-
-
 class RateLimitingException(SyncException):
     pass
 
-
-class MonthlyLimitExceeded(SyncException):
-    pass
-
-
 class ServerException(SyncException):
     pass
-
-
-class VehicleNotCapableException(SyncException):
-    pass
-
 
 class GatewayTimeoutException(SyncException):
     def __init__(self, response):
@@ -136,26 +114,6 @@ class GatewayTimeoutException(SyncException):
 
     def __str__(self):
         return self.message</code></pre>
-</details>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li><a title="syncconnect.exceptions.SyncException" href="#syncconnect.exceptions.SyncException">SyncException</a></li>
-<li>builtins.Exception</li>
-<li>builtins.BaseException</li>
-</ul>
-</dd>
-<dt id="syncconnect.exceptions.MonthlyLimitExceeded"><code class="flex name class">
-<span>class <span class="ident">MonthlyLimitExceeded</span></span>
-<span>(</span><span>response)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class MonthlyLimitExceeded(SyncException):
-    pass</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -244,32 +202,6 @@ class GatewayTimeoutException(SyncException):
 <li>builtins.BaseException</li>
 </ul>
 </dd>
-<dt id="syncconnect.exceptions.StateException"><code class="flex name class">
-<span>class <span class="ident">StateException</span></span>
-<span>(</span><span>response)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class StateException(SyncException):
-    def __init__(self, response):
-        super(StateException, self).__init__(response)
-        json = response.json()
-        self.code = json[&#39;code&#39;]
-
-    def __str__(self):
-        return self.code + &#39;: &#39; + self.message</code></pre>
-</details>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li><a title="syncconnect.exceptions.SyncException" href="#syncconnect.exceptions.SyncException">SyncException</a></li>
-<li>builtins.Exception</li>
-<li>builtins.BaseException</li>
-</ul>
-</dd>
 <dt id="syncconnect.exceptions.SyncException"><code class="flex name class">
 <span>class <span class="ident">SyncException</span></span>
 <span>(</span><span>response)</span>
@@ -283,13 +215,15 @@ class GatewayTimeoutException(SyncException):
 <pre><code class="python">class SyncException(Exception):
 
     def __init__(self, response):
-        json = response.json()
-        if &#39;error&#39; in json:
-            self.message = json[&#39;error&#39;]
-        elif &#39;message&#39; in json:
-            self.message = json[&#39;message&#39;]
-        else:
-            self.message = &#39;Unknown Error&#39;
+        self.message = &#39;Unknown error&#39;
+        if type(response) is requests.models.Response:
+            json = response.json()
+            if &#39;message&#39; in json:
+                self.message = json[&#39;message&#39;]
+            elif &#39;error_description&#39; in json:
+                self.message = json[&#39;error_description&#39;]
+        elif type(response) is str:
+            self.message = response
 
     def __str__(self):
         return self.message</code></pre>
@@ -303,14 +237,11 @@ class GatewayTimeoutException(SyncException):
 <ul class="hlist">
 <li><a title="syncconnect.exceptions.AuthenticationException" href="#syncconnect.exceptions.AuthenticationException">AuthenticationException</a></li>
 <li><a title="syncconnect.exceptions.GatewayTimeoutException" href="#syncconnect.exceptions.GatewayTimeoutException">GatewayTimeoutException</a></li>
-<li><a title="syncconnect.exceptions.MonthlyLimitExceeded" href="#syncconnect.exceptions.MonthlyLimitExceeded">MonthlyLimitExceeded</a></li>
 <li><a title="syncconnect.exceptions.PermissionException" href="#syncconnect.exceptions.PermissionException">PermissionException</a></li>
 <li><a title="syncconnect.exceptions.RateLimitingException" href="#syncconnect.exceptions.RateLimitingException">RateLimitingException</a></li>
 <li><a title="syncconnect.exceptions.ResourceNotFoundException" href="#syncconnect.exceptions.ResourceNotFoundException">ResourceNotFoundException</a></li>
 <li><a title="syncconnect.exceptions.ServerException" href="#syncconnect.exceptions.ServerException">ServerException</a></li>
-<li><a title="syncconnect.exceptions.StateException" href="#syncconnect.exceptions.StateException">StateException</a></li>
 <li><a title="syncconnect.exceptions.ValidationException" href="#syncconnect.exceptions.ValidationException">ValidationException</a></li>
-<li><a title="syncconnect.exceptions.VehicleNotCapableException" href="#syncconnect.exceptions.VehicleNotCapableException">VehicleNotCapableException</a></li>
 </ul>
 </dd>
 <dt id="syncconnect.exceptions.ValidationException"><code class="flex name class">
@@ -324,26 +255,6 @@ class GatewayTimeoutException(SyncException):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class ValidationException(SyncException):
-    pass</code></pre>
-</details>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li><a title="syncconnect.exceptions.SyncException" href="#syncconnect.exceptions.SyncException">SyncException</a></li>
-<li>builtins.Exception</li>
-<li>builtins.BaseException</li>
-</ul>
-</dd>
-<dt id="syncconnect.exceptions.VehicleNotCapableException"><code class="flex name class">
-<span>class <span class="ident">VehicleNotCapableException</span></span>
-<span>(</span><span>response)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class VehicleNotCapableException(SyncException):
     pass</code></pre>
 </details>
 <h3>Ancestors</h3>
@@ -376,9 +287,6 @@ class GatewayTimeoutException(SyncException):
 <h4><code><a title="syncconnect.exceptions.GatewayTimeoutException" href="#syncconnect.exceptions.GatewayTimeoutException">GatewayTimeoutException</a></code></h4>
 </li>
 <li>
-<h4><code><a title="syncconnect.exceptions.MonthlyLimitExceeded" href="#syncconnect.exceptions.MonthlyLimitExceeded">MonthlyLimitExceeded</a></code></h4>
-</li>
-<li>
 <h4><code><a title="syncconnect.exceptions.PermissionException" href="#syncconnect.exceptions.PermissionException">PermissionException</a></code></h4>
 </li>
 <li>
@@ -391,16 +299,10 @@ class GatewayTimeoutException(SyncException):
 <h4><code><a title="syncconnect.exceptions.ServerException" href="#syncconnect.exceptions.ServerException">ServerException</a></code></h4>
 </li>
 <li>
-<h4><code><a title="syncconnect.exceptions.StateException" href="#syncconnect.exceptions.StateException">StateException</a></code></h4>
-</li>
-<li>
 <h4><code><a title="syncconnect.exceptions.SyncException" href="#syncconnect.exceptions.SyncException">SyncException</a></code></h4>
 </li>
 <li>
 <h4><code><a title="syncconnect.exceptions.ValidationException" href="#syncconnect.exceptions.ValidationException">ValidationException</a></code></h4>
-</li>
-<li>
-<h4><code><a title="syncconnect.exceptions.VehicleNotCapableException" href="#syncconnect.exceptions.VehicleNotCapableException">VehicleNotCapableException</a></code></h4>
 </li>
 </ul>
 </li>
@@ -408,7 +310,7 @@ class GatewayTimeoutException(SyncException):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
 </footer>
 </body>
 </html>
