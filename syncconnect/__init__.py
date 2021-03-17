@@ -15,9 +15,6 @@ from .exceptions import (
     AuthenticationException,
     PermissionException,
     ResourceNotFoundException,
-    StateException,
     RateLimitingException,
-    MonthlyLimitExceeded,
     ServerException,
-    VehicleNotCapableException,
     GatewayTimeoutException)
