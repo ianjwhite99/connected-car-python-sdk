@@ -1,6 +1,5 @@
 import syncconnect
 import responses
-import requests
 import unittest
 
 class TestRequester(unittest.TestCase):
