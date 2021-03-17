@@ -34,7 +34,11 @@ class AuthClient(object):
         """
 
         headers = {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Accept': '*/*',
+            'Accept-Language': 'en-US',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'User-Agent': 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
+            'Accept-Encoding': 'gzip, deflate, br'
         }
 
         data = {
@@ -62,7 +66,11 @@ class AuthClient(object):
         """
 
         headers = {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Accept': '*/*',
+            'Accept-Language': 'en-US',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'User-Agent': 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
+            'Accept-Encoding': 'gzip, deflate, br'
         }
 
         data = {
