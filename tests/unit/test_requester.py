@@ -2,6 +2,7 @@ import syncconnect
 import responses
 import unittest
 
+
 class TestRequester(unittest.TestCase):
 
     EXPECTED = 'expected'
@@ -19,8 +20,11 @@ class TestRequester(unittest.TestCase):
     def check(self, exception):
 
         self.assertRaisesRegexp(
-            exception, self.EXPECTED, syncconnect.requester.call, 'GET', self.URL
-        )
+            exception,
+            self.EXPECTED,
+            syncconnect.requester.call,
+            'GET',
+            self.URL)
 
     @responses.activate
     def test_user_agent(self):
@@ -51,7 +55,7 @@ class TestRequester(unittest.TestCase):
     def test_400(self):
         self.queue(400)
         self.check(syncconnect.ValidationException)
-    
+
     @responses.activate
     def test_401(self):
         self.queue(401)
@@ -84,7 +88,8 @@ class TestRequester(unittest.TestCase):
 
     @responses.activate
     def test_504(self):
-        responses.add('GET', self.URL, status=504, json={'error': 'some error', 'message': self.EXPECTED})
+        responses.add('GET', self.URL, status=504, json={
+                      'error': 'some error', 'message': self.EXPECTED})
         self.check(syncconnect.GatewayTimeoutException)
 
     @responses.activate

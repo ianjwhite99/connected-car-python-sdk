@@ -1,6 +1,8 @@
 import unittest
 import responses
 from syncconnect import syncconnect, const
+
+
 class TestSyncConnect(unittest.TestCase):
 
     def setUp(self):
@@ -9,7 +11,8 @@ class TestSyncConnect(unittest.TestCase):
         self.redirect_uri = "redirectUri"
         self.scope = ['profile']
 
-        self.client = syncconnect.AuthClient(self.client_id, self.client_secret, self.redirect_uri, self.scope)
+        self.client = syncconnect.AuthClient(
+            self.client_id, self.client_secret, self.redirect_uri, self.scope)
 
     @responses.activate
     def test_get_access_token(self):
@@ -20,7 +23,8 @@ class TestSyncConnect(unittest.TestCase):
         }
         responses.add('POST', const.TOKEN_URL, json=data)
         actual = self.client.get_user_access_token('username', 'password')
-        self.assertEqual("v6574b42-a5bc-4574-a87f-5c9d1202e316", actual['access_token'])
+        self.assertEqual("v6574b42-a5bc-4574-a87f-5c9d1202e316",
+                         actual['access_token'])
 
     @responses.activate
     def test_get_exchange_token(self):
@@ -31,4 +35,5 @@ class TestSyncConnect(unittest.TestCase):
         }
         responses.add('POST', const.TOKEN_URL, json=data)
         actual = self.client.exchange_refresh_token('access_token')
-        self.assertEqual("v6574b42-a5bc-4574-a87f-5c9d1202e316", actual['access_token'])
+        self.assertEqual("v6574b42-a5bc-4574-a87f-5c9d1202e316",
+                         actual['access_token'])

@@ -2,7 +2,7 @@
 The Python package `syncconnect` provides a SDK to interact with
 Ford Sync Connect enabled vehicles. With this package you will
 be able to make requests on behalf of a Ford Pass user to: authorize
-new vehicles, edit current vehicles, return vehicle information, send 
+new vehicles, edit current vehicles, return vehicle information, send
 vehicle commands and return user information.
 """
 

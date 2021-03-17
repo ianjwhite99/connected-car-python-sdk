@@ -1,6 +1,7 @@
 import requests
 from . import exceptions as E
 
+
 def call(method, url, **kwargs):
     """ Attachs the kwargs into the headers, sends the request to the Ford API's
         and handles all error cases.
@@ -17,8 +18,8 @@ def call(method, url, **kwargs):
     if "headers" not in kwargs:
         kwargs["headers"] = {}
     kwargs['headers']['User-Agent'] = 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0'
-    
-    try: 
+
+    try:
         response = requests.request(method, url, timeout=310, **kwargs)
         code = response.status_code
 

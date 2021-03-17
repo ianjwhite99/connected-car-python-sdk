@@ -1,7 +1,10 @@
 from . import const, requester
+
+
 class AuthClient(object):
-    
-    def __init__(self, client_id, client_secret, redirect_uri=None, scope=None):
+
+    def __init__(self, client_id, client_secret,
+                 redirect_uri=None, scope=None):
         """ A client for accessing the Ford API
 
         Args:
@@ -47,7 +50,8 @@ class AuthClient(object):
             'password': password
         }
 
-        response = requester.call('POST', const.TOKEN_URL, headers=headers, data=data).json()
+        response = requester.call(
+            'POST', const.TOKEN_URL, headers=headers, data=data).json()
         return response
 
     def exchange_refresh_token(self, refresh_token):
@@ -78,5 +82,6 @@ class AuthClient(object):
             'refresh_token': refresh_token
         }
 
-        response = requester.call('POST', const.TOKEN_URL, headers=headers, data=data).json()
+        response = requester.call(
+            'POST', const.TOKEN_URL, headers=headers, data=data).json()
         return response
