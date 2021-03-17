@@ -5,15 +5,15 @@ The Sync Connect Python SDK is an open-source, python package that provides the 
 ```sh
 python3 -m pip install syncconnect
 ```
+
+Requirements
+- To make requests to a vehicle, the end user must have signed up for an account using [Ford Pass](https://owner.ford.com/fordpass/fordpass-sync-connect.html). These credentials will be used to authenticate your requests.
 # Getting Started
 
 Import the Sync Connect SDK
 ```python
 import syncconnect
 ```
-
-Requirements
-- To make requests to a vehicle, the end user must have signed up for an account using [Ford Pass](https://owner.ford.com/fordpass/fordpass-sync-connect.html). These credentials will be used to authenticate your requests.
 
 
 Create a new syncconnect `client`

@@ -67,7 +67,10 @@ setup(
         "dev": [
           "coverage",
           "nose",
-          "responses"
+          "responses",
+          "pylint",
+          "python-dotenv",
+          "requests"
         ]
     },
 )
