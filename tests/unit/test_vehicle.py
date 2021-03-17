@@ -61,10 +61,11 @@ class TestVehicle(unittest.TestCase):
 
         self.assertEqual('1FTEW1EP6KKC17890', actual['vehiclestatus']['vin'])
 
-    # @responses.activate
-    # def test_send_auth(self):
-    #     responses.add('POST', const.API_URL + '/vehicles/v2/'+self.vin+'/drivers', json=None)
-    #     actual = self.vehicle.send_auth()
+    @responses.activate
+    def test_send_auth(self):
+        responses.add('POST', const.API_URL + '/vehicles/v2/'+self.vin+'/drivers', json={})
+        actual = self.vehicle.send_auth()
+        self.assertEqual({}, actual)
 
     @responses.activate
     def test_auth_status(self):

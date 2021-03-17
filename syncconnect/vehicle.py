@@ -68,7 +68,7 @@ class Vehicle(object):
         """
 
         response = self.api.post(const.API_URL, 'vehicles/v2/'+self.vehicle_id+'/drivers', None)
-        return response
+        return response.json()
 
     def auth_status(self):
         """ GET Vehicle.auth_status
