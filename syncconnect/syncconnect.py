@@ -1,4 +1,4 @@
-from . import api, const, requester, vehicle, user
+from . import const, requester
 class AuthClient(object):
     
     def __init__(self, client_id, client_secret, redirect_uri=None, scope=None):

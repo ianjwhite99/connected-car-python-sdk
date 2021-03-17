@@ -62,5 +62,12 @@ setup(
     license='MIT',
     install_requires=[
         'requests'
-    ]
+    ],
+    extras_require={
+        "dev": [
+          "coverage",
+          "nose",
+          "responses"
+        ]
+    },
 )
