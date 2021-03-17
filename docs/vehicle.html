@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.1" />
+<meta name="generator" content="pdoc 0.9.2" />
 <title>syncconnect.vehicle API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -96,7 +96,7 @@ class Vehicle(object):
         &#34;&#34;&#34;
 
         response = self.api.post(const.API_URL, &#39;vehicles/v2/&#39;+self.vehicle_id+&#39;/drivers&#39;, None)
-        return response
+        return response.json()
 
     def auth_status(self):
         &#34;&#34;&#34; GET Vehicle.auth_status
@@ -124,20 +124,6 @@ class Vehicle(object):
         &#34;&#34;&#34;
 
         response = self.api.get(const.API_URL, &#39;users/vehicles/&#39;+self.vehicle_id+&#39;/detail?lrdt=01-01-1970%2000:00:00&#39;)
-        return response.json()
-
-    def recalls(self):
-        &#34;&#34;&#34; GET Vehicle.recalls
-        
-        Returns:
-            Response: Vehicle&#39;s active recalls
-
-        Raises:
-            SyncException
-
-        &#34;&#34;&#34;
-
-        response = self.api.get(const.API_URL, &#39;recall/v2/recalls?vin=&#39;+self.vehicle_id+&#39;&amp;language=EN&amp;region=US&amp;country=USA&#39;)
         return response.json()
 
     def maintenance_schedule(self):
@@ -504,7 +490,7 @@ class Vehicle(object):
         &#34;&#34;&#34;
 
         response = self.api.post(const.API_URL, &#39;vehicles/v2/&#39;+self.vehicle_id+&#39;/drivers&#39;, None)
-        return response
+        return response.json()
 
     def auth_status(self):
         &#34;&#34;&#34; GET Vehicle.auth_status
@@ -532,20 +518,6 @@ class Vehicle(object):
         &#34;&#34;&#34;
 
         response = self.api.get(const.API_URL, &#39;users/vehicles/&#39;+self.vehicle_id+&#39;/detail?lrdt=01-01-1970%2000:00:00&#39;)
-        return response.json()
-
-    def recalls(self):
-        &#34;&#34;&#34; GET Vehicle.recalls
-        
-        Returns:
-            Response: Vehicle&#39;s active recalls
-
-        Raises:
-            SyncException
-
-        &#34;&#34;&#34;
-
-        response = self.api.get(const.API_URL, &#39;recall/v2/recalls?vin=&#39;+self.vehicle_id+&#39;&amp;language=EN&amp;region=US&amp;country=USA&#39;)
         return response.json()
 
     def maintenance_schedule(self):
@@ -1286,37 +1258,6 @@ class Vehicle(object):
     return {&#34;data&#34;: json[&#39;vehiclestatus&#39;][&#39;oil&#39;]}</code></pre>
 </details>
 </dd>
-<dt id="syncconnect.vehicle.Vehicle.recalls"><code class="name flex">
-<span>def <span class="ident">recalls</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>GET Vehicle.recalls</p>
-<h2 id="returns">Returns</h2>
-<dl>
-<dt><code>Response</code></dt>
-<dd>Vehicle's active recalls</dd>
-</dl>
-<h2 id="raises">Raises</h2>
-<p>SyncException</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def recalls(self):
-    &#34;&#34;&#34; GET Vehicle.recalls
-    
-    Returns:
-        Response: Vehicle&#39;s active recalls
-
-    Raises:
-        SyncException
-
-    &#34;&#34;&#34;
-
-    response = self.api.get(const.API_URL, &#39;recall/v2/recalls?vin=&#39;+self.vehicle_id+&#39;&amp;language=EN&amp;region=US&amp;country=USA&#39;)
-    return response.json()</code></pre>
-</details>
-</dd>
 <dt id="syncconnect.vehicle.Vehicle.refresh_status"><code class="name flex">
 <span>def <span class="ident">refresh_status</span></span>(<span>self)</span>
 </code></dt>
@@ -1376,7 +1317,7 @@ class Vehicle(object):
     &#34;&#34;&#34;
 
     response = self.api.post(const.API_URL, &#39;vehicles/v2/&#39;+self.vehicle_id+&#39;/drivers&#39;, None)
-    return response</code></pre>
+    return response.json()</code></pre>
 </details>
 </dd>
 <dt id="syncconnect.vehicle.Vehicle.start"><code class="name flex">
@@ -1666,7 +1607,6 @@ class Vehicle(object):
 <li><code><a title="syncconnect.vehicle.Vehicle.maintenance_schedule" href="#syncconnect.vehicle.Vehicle.maintenance_schedule">maintenance_schedule</a></code></li>
 <li><code><a title="syncconnect.vehicle.Vehicle.odometer" href="#syncconnect.vehicle.Vehicle.odometer">odometer</a></code></li>
 <li><code><a title="syncconnect.vehicle.Vehicle.oil" href="#syncconnect.vehicle.Vehicle.oil">oil</a></code></li>
-<li><code><a title="syncconnect.vehicle.Vehicle.recalls" href="#syncconnect.vehicle.Vehicle.recalls">recalls</a></code></li>
 <li><code><a title="syncconnect.vehicle.Vehicle.refresh_status" href="#syncconnect.vehicle.Vehicle.refresh_status">refresh_status</a></code></li>
 <li><code><a title="syncconnect.vehicle.Vehicle.send_auth" href="#syncconnect.vehicle.Vehicle.send_auth">send_auth</a></code></li>
 <li><code><a title="syncconnect.vehicle.Vehicle.start" href="#syncconnect.vehicle.Vehicle.start">start</a></code></li>
@@ -1685,7 +1625,7 @@ class Vehicle(object):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
 </footer>
 </body>
 </html>
