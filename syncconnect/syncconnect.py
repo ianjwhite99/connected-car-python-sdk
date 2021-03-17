@@ -1,8 +1,10 @@
-from . import api, const, requester, vehicle, user
+from . import const, requester
+
 
 class AuthClient(object):
-    
-    def __init__(self, client_id, client_secret, redirect_uri=None, scope=None):
+
+    def __init__(self, client_id, client_secret,
+                 redirect_uri=None, scope=None):
         """ A client for accessing the Ford API
 
         Args:
@@ -34,7 +36,11 @@ class AuthClient(object):
         """
 
         headers = {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Accept': '*/*',
+            'Accept-Language': 'en-US',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'User-Agent': 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
+            'Accept-Encoding': 'gzip, deflate, br'
         }
 
         data = {
@@ -44,7 +50,8 @@ class AuthClient(object):
             'password': password
         }
 
-        response = requester.call('POST', const.TOKEN_URL, headers=headers, data=data).json()
+        response = requester.call(
+            'POST', const.TOKEN_URL, headers=headers, data=data).json()
         return response
 
     def exchange_refresh_token(self, refresh_token):
@@ -62,7 +69,11 @@ class AuthClient(object):
         """
 
         headers = {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Accept': '*/*',
+            'Accept-Language': 'en-US',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'User-Agent': 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
+            'Accept-Encoding': 'gzip, deflate, br'
         }
 
         data = {
@@ -71,5 +82,6 @@ class AuthClient(object):
             'refresh_token': refresh_token
         }
 
-        response = requester.call('POST', const.TOKEN_URL, headers=headers, data=data).json()
+        response = requester.call(
+            'POST', const.TOKEN_URL, headers=headers, data=data).json()
         return response

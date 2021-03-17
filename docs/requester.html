@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.1" />
+<meta name="generator" content="pdoc 0.9.2" />
 <title>syncconnect.requester API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -26,8 +26,7 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import platform
-import requests
+<pre><code class="python">import requests
 from . import exceptions as E
 
 def call(method, url, **kwargs):
@@ -42,32 +41,39 @@ def call(method, url, **kwargs):
     Returns:
         Response: response from the request to the Ford API&#39;s
     &#34;&#34;&#34;
-    
-    response = requests.request(method, url, timeout=310, **kwargs)
-    code = response.status_code
 
-    if response.ok:
-        return response
-    elif code == 400:
-        raise E.ValidationException(response)
-    elif code == 401:
-        raise E.AuthenticationException(response)
-    elif code == 403:
-        raise E.PermissionException(response)
-    elif code == 404:
-        raise E.ResourceNotFoundException(response)
-    elif code == 409:
-        raise E.StateException(response)
-    elif code == 429:
-        raise E.RateLimitingException(response)
-    elif code == 430:
-        raise E.MonthlyLimitExceeded(response)
-    elif code == 500:
-        raise E.ServerException(response)
-    elif code == 504:
-        raise E.GatewayTimeoutException(response)
-    else:
-        response.raise_for_status()</code></pre>
+    if &#34;headers&#34; not in kwargs:
+        kwargs[&#34;headers&#34;] = {}
+    kwargs[&#39;headers&#39;][&#39;User-Agent&#39;] = &#39;fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0&#39;
+    
+    try: 
+        response = requests.request(method, url, timeout=310, **kwargs)
+        code = response.status_code
+
+        if response.ok:
+            return response
+        elif code == 400:
+            raise E.ValidationException(response)
+        elif code == 401:
+            raise E.AuthenticationException(response)
+        elif code == 403:
+            raise E.PermissionException(response)
+        elif code == 404:
+            raise E.ResourceNotFoundException(response)
+        elif code == 429:
+            raise E.RateLimitingException(response)
+        elif code == 500:
+            raise E.ServerException(response)
+        elif code == 504:
+            raise E.GatewayTimeoutException(response)
+        else:
+            response.raise_for_status()
+
+    except Exception as e:
+        if isinstance(e, E.SyncException):
+            raise e
+        else:
+            raise E.SyncException(&#34;Unexpected error&#34;) from e</code></pre>
 </details>
 </section>
 <section>
@@ -113,32 +119,39 @@ and handles all error cases.</p>
     Returns:
         Response: response from the request to the Ford API&#39;s
     &#34;&#34;&#34;
-    
-    response = requests.request(method, url, timeout=310, **kwargs)
-    code = response.status_code
 
-    if response.ok:
-        return response
-    elif code == 400:
-        raise E.ValidationException(response)
-    elif code == 401:
-        raise E.AuthenticationException(response)
-    elif code == 403:
-        raise E.PermissionException(response)
-    elif code == 404:
-        raise E.ResourceNotFoundException(response)
-    elif code == 409:
-        raise E.StateException(response)
-    elif code == 429:
-        raise E.RateLimitingException(response)
-    elif code == 430:
-        raise E.MonthlyLimitExceeded(response)
-    elif code == 500:
-        raise E.ServerException(response)
-    elif code == 504:
-        raise E.GatewayTimeoutException(response)
-    else:
-        response.raise_for_status()</code></pre>
+    if &#34;headers&#34; not in kwargs:
+        kwargs[&#34;headers&#34;] = {}
+    kwargs[&#39;headers&#39;][&#39;User-Agent&#39;] = &#39;fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0&#39;
+    
+    try: 
+        response = requests.request(method, url, timeout=310, **kwargs)
+        code = response.status_code
+
+        if response.ok:
+            return response
+        elif code == 400:
+            raise E.ValidationException(response)
+        elif code == 401:
+            raise E.AuthenticationException(response)
+        elif code == 403:
+            raise E.PermissionException(response)
+        elif code == 404:
+            raise E.ResourceNotFoundException(response)
+        elif code == 429:
+            raise E.RateLimitingException(response)
+        elif code == 500:
+            raise E.ServerException(response)
+        elif code == 504:
+            raise E.GatewayTimeoutException(response)
+        else:
+            response.raise_for_status()
+
+    except Exception as e:
+        if isinstance(e, E.SyncException):
+            raise e
+        else:
+            raise E.SyncException(&#34;Unexpected error&#34;) from e</code></pre>
 </details>
 </dd>
 </dl>
@@ -166,7 +179,7 @@ and handles all error cases.</p>
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
 </footer>
 </body>
 </html>
