@@ -56,6 +56,8 @@ user = syncconnect.User(access['access_token'])
 
 Use `user.vehicles()` to return an array of all the vehicles associated with a users account. The response will include the **vehicle vin**.
 ```python
+vehicles = user.vehicles()
+
 vehicleList = [] # Array of vehicles
 
 for userVehicle in vehicles: # For each user vehicle
