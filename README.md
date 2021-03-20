@@ -61,13 +61,12 @@ vehicles = user.vehicles()
 vehicleList = [] # Array of vehicles
 
 for userVehicle in vehicles: # For each user vehicle
-    vehicleList.insert(0, userVehicle['vin'])
-    break
+    vehicleList.append(userVehicle['vin'])
 ```
 
 Now with a **vehicle vin** in hand, use `syncconnect.Vehicle()` to get a Vehicle object representing the user's vehicle.
 ```python
-currentVehicle = syncconnect.Vehicle(vehicleList[0], access['access_token'])
+currentVehicle = syncconnect.Vehicle(vehicleList[0], access['access_token']) # First Vehicle in vehicleList
 ```
 
 Now you can ask the car to do things, or ask it for some data! For example:
