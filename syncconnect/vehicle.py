@@ -51,6 +51,25 @@ class Vehicle(object):
             '/status?lrdt=01-01-1970%2000:00:00')
         return response.json()
 
+    def request_update(self):
+        """ PUT Vehicle.status
+
+        Returns:
+            Response: Send request to refresh data from the cars module
+            Note: Next need to call status() to receive the updated data
+
+        Raises:
+            SyncException
+
+        """
+
+        response = self.api.put(
+            const.API_URL,
+            'vehicles/v2/' +
+            self.vehicle_id +
+            '/status', None)
+        return response.json()
+        
     def refresh_status(self):
         """ GET Vehicle.refresh_status
 
