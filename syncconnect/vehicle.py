@@ -15,24 +15,6 @@ class Vehicle(object):
         self.vehicle_id = vehicle_id
         self.api = Api(access_token)
 
-    def info(self):
-        """ GET Vehicle.info
-
-        Returns:
-            Response: Vehicle information
-
-        Raises:
-            SyncException
-
-        """
-
-        response = self.api.get(
-            const.VEHICLE_URL,
-            'vinlookup/v1/vins/' +
-            self.vehicle_id +
-            '/detail?country=USA&language=EN')
-        return response.json()
-
     def status(self):
         """ GET Vehicle.status
 
@@ -132,7 +114,7 @@ class Vehicle(object):
         """
 
         response = self.api.get(
-            const.API_URL,
+            const.USER_URL,
             'vehiclemaintenance/v1/maintenance-schedule?vin=' +
             self.vehicle_id +
             '&language=EN&country=USA')
@@ -150,7 +132,7 @@ class Vehicle(object):
         """
 
         response = self.api.get(
-            const.API_URL, 'capability/v1/vehicles/' + self.vehicle_id)
+            const.USER_URL, 'capability/v1/vehicles/' + self.vehicle_id)
         return response.json()
 
     def vin(self):
