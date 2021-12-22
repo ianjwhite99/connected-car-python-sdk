@@ -23,6 +23,18 @@ class User(object):
         response = self.api.get(const.API_URL, 'users')
         return response.json()
 
+    def get_messages(self):
+        """ GET User.messages
+
+        Returns:
+            Response: User messages from Ford API
+
+        """
+
+        response = self.api.get(
+            const.USER_URL, 'messagecenter/v3/messages?lrdt=1970-01-01T00:00:00Z')
+        return response.json()
+
     def vehicles(self):
         """ GET User.vehicles
 
@@ -65,4 +77,34 @@ class User(object):
 
         response = self.api.delete(
             const.API_URL, 'users/vehicles/' + vehicle_id)
+        return response.json()
+
+    def request_vehicle_access(self, vehicle_id):
+        """ POST User.accessrequest
+
+        Args:
+            vehicle_id (str): the vehicle identification number
+
+        Returns:
+            Response: Request access to user vehicle with vehicle_id
+
+        """
+
+        response = self.api.post(
+            const.API_URL, 'vehicles/${vin}/drivers/accessrequest', {})
+        return response.json()
+
+    def authorize_vehicle_access(self, message_id):
+        """ PUT User.accessrequest
+
+        Args:
+            vehicle_id (str): the vehicle identification number
+
+        Returns:
+            Response: Request access to user vehicle with vehicle_id
+
+        """
+
+        response = self.api.put(
+            const.USER_URL, 'authorization/retail/v1/' + message_id + '/approveAccess', {})
         return response.json()
