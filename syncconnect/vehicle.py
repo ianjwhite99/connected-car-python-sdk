@@ -34,29 +34,10 @@ class Vehicle(object):
         return response.json()
 
     def refresh_status(self):
-        """ GET Vehicle.refresh_status
-
-        Returns:
-            Response: Refresh vehicle status
-
-        Raises:
-            SyncException
-
-        """
-
-        response = self.api.get(
-            const.API_URL,
-            'vehicles/v3/' +
-            self.vehicle_id +
-            '/statusrefresh/ffe168a3-657f-4b74-9668-909c60e2379f')
-        return response.json()
-
-    def request_update(self):
-        """ PUT Vehicle.status
+        """ PUT Vehicle.refresh_status
 
         Returns:
             Response: Send request to refresh data from the cars module
-            Note: Next need to call status() to receive the updated data
 
         Raises:
             SyncException
@@ -69,7 +50,6 @@ class Vehicle(object):
             self.vehicle_id +
             '/status', None)
         return response.json()
-        
 
     def send_auth(self):
         """ POST Vehicle.send_auth
