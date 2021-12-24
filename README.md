@@ -51,7 +51,7 @@ This access object will look like this:
 Access tokens will expire every 2 hours, so you'll need to constantly refresh them by calling `client.exchange_refresh_token()`
 
 ```python
-refreshToken = client.exchange_refresh_token(access['refreshToke'])
+refreshToken = client.exchange_refresh_token(access['refresh_token'])
 ```
 
 With your access token in hand, use `connectedcar.User()` to get a User object representing the user.
