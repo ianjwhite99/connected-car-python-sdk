@@ -1,4 +1,4 @@
-import syncconnect
+import connectedcar
 import responses
 import unittest
 
@@ -22,14 +22,14 @@ class TestRequester(unittest.TestCase):
         self.assertRaisesRegexp(
             exception,
             self.EXPECTED,
-            syncconnect.requester.call,
+            connectedcar.requester.call,
             'GET',
             self.URL)
 
     @responses.activate
     def test_user_agent(self):
         self.queue(200)
-        syncconnect.requester.call('GET', self.URL)
+        connectedcar.requester.call('GET', self.URL)
         self.assertEqual(
             responses.calls[0].request.headers['User-Agent'],
             'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
@@ -39,62 +39,62 @@ class TestRequester(unittest.TestCase):
     def test_oauth_error(self):
         self.queue(401, error_description='unauthorized')
         try:
-            syncconnect.requester.call('GET', self.URL)
-        except syncconnect.AuthenticationException as err:
+            connectedcar.requester.call('GET', self.URL)
+        except connectedcar.AuthenticationException as err:
             self.assertEqual(err.message, 'unauthorized')
 
     @responses.activate
     def test_unknown_error(self):
         self.queue(401, error_description='unknown error')
         try:
-            syncconnect.requester.call('GET', self.URL)
-        except syncconnect.AuthenticationException as err:
+            connectedcar.requester.call('GET', self.URL)
+        except connectedcar.AuthenticationException as err:
             self.assertEqual(err.message, 'unknown error')
 
     @responses.activate
     def test_400(self):
         self.queue(400)
-        self.check(syncconnect.ValidationException)
+        self.check(connectedcar.ValidationException)
 
     @responses.activate
     def test_401(self):
         self.queue(401)
-        self.check(syncconnect.AuthenticationException)
+        self.check(connectedcar.AuthenticationException)
 
     @responses.activate
     def test_403(self):
         self.queue(403)
-        self.check(syncconnect.PermissionException)
+        self.check(connectedcar.PermissionException)
 
     @responses.activate
     def test_404(self):
         self.queue(404)
-        self.check(syncconnect.ResourceNotFoundException)
+        self.check(connectedcar.ResourceNotFoundException)
 
     @responses.activate
     def test_429(self):
         self.queue(429)
-        self.check(syncconnect.RateLimitingException)
+        self.check(connectedcar.RateLimitingException)
 
     @responses.activate
     def test_429(self):
         self.queue(429)
-        self.check(syncconnect.RateLimitingException)
+        self.check(connectedcar.RateLimitingException)
 
     @responses.activate
     def test_500(self):
         self.queue(500)
-        self.check(syncconnect.ServerException)
+        self.check(connectedcar.ServerException)
 
     @responses.activate
     def test_504(self):
         responses.add('GET', self.URL, status=504, json={
                       'error': 'some error', 'message': self.EXPECTED})
-        self.check(syncconnect.GatewayTimeoutException)
+        self.check(connectedcar.GatewayTimeoutException)
 
     @responses.activate
     def test_other(self):
         self.queue(503)
-        with self.assertRaises(syncconnect.SyncException) as se:
-            syncconnect.requester.call('GET', self.URL)
+        with self.assertRaises(connectedcar.SyncException) as se:
+            connectedcar.requester.call('GET', self.URL)
         self.assertEquals(se.exception.message, 'Unexpected error')

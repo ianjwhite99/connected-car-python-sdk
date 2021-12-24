@@ -53,15 +53,15 @@ def _get_long_description():
 
 
 setup(
-    name='syncconnect',
+    name='connectedcar',
     version=_get_version(),
-    description='Sync Connect Python SDK',
+    description='ConnectedCar SDK',
     long_description=_get_long_description(),
     long_description_content_type='text/markdown',
     author='Ian White',
-    author_email='ianjwhite99@gmail.com',
-    packages=['syncconnect'],
-    url='https://github.com/ianjwhite99/sync-connect-sdk',
+    author_email='iwhite99@protonmail.com',
+    packages=['connectedcar'],
+    url='https://github.com/ianjwhite99/connected-car-python-sdk',
     license='MIT',
     install_requires=[
         'requests'
