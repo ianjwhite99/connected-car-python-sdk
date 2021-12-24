@@ -1,13 +1,13 @@
 import unittest
 import responses
-import syncconnect
-from syncconnect import const
+import connectedcar
+from connectedcar import const
 
 
 class TestUser(unittest.TestCase):
 
     def setUp(self):
-        self.user = syncconnect.User('access_token')
+        self.user = connectedcar.User('access_token')
 
     @responses.activate
     def test_get_user_info(self):

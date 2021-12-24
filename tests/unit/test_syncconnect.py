@@ -1,9 +1,9 @@
 import unittest
 import responses
-from syncconnect import syncconnect, const
+from connectedcar import connectedcar, const
 
 
-class TestSyncConnect(unittest.TestCase):
+class Testconnectedcar(unittest.TestCase):
 
     def setUp(self):
         self.client_id = 'apiKey'
@@ -11,7 +11,7 @@ class TestSyncConnect(unittest.TestCase):
         self.redirect_uri = "redirectUri"
         self.scope = ['profile']
 
-        self.client = syncconnect.AuthClient(
+        self.client = connectedcar.AuthClient(
             self.client_id, self.client_secret, self.redirect_uri, self.scope)
 
     @responses.activate

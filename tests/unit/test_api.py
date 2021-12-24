@@ -1,4 +1,4 @@
-from syncconnect import api, const
+from connectedcar import api, const
 import unittest
 
 
