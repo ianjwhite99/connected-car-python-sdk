@@ -5,7 +5,7 @@ The ConnectedCar Python SDK is an open-source, python package that provides the 
 # Installation [![PyPI version](https://badge.fury.io/py/connectedcar.svg)](https://badge.fury.io/py/connectedcar)
 
 ```sh
-python3 -m pip install connected-car
+python3 -m pip install connectedcar
 ```
 
 Requirements
