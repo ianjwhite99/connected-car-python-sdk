@@ -1,14 +1,14 @@
 import unittest
 import responses
-import syncconnect
-from syncconnect import const
+import connectedcar
+from connectedcar import const
 
 
 class TestVehicle(unittest.TestCase):
 
     def setUp(self):
         self.vin = '1FTEW1EP6KKC17890'
-        self.vehicle = syncconnect.Vehicle(self.vin, 'access_token')
+        self.vehicle = connectedcar.Vehicle(self.vin, 'access_token')
 
     @responses.activate
     def test_get_vehicle_info(self):
