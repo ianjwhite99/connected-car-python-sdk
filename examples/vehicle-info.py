@@ -13,4 +13,4 @@ vehicles = user.vehicles()  # Fetch list of user vehicles
 for userVehicle in vehicles:  # For each user vehicle
     vehicle = connectedcar.Vehicle(
         userVehicle['vin'], access['access_token'])  # Create vehicle object
-    print(vehicle.info())  # Return vehicle info
+    print(vehicle.details())  # Print vehicle details in json format
