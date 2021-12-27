@@ -4,13 +4,13 @@ from . import const
 
 class User(object):
 
-    def __init__(self, access_token):
+    def __init__(self, access_token, region="US"):
         """ Initialize a new User object to directly make requests to Ford.
 
         Args:
             access_token (str): Ford access token
         """
-        self.api = Api(access_token)
+        self.api = Api(access_token, region)
 
     def info(self):
         """ GET User.info

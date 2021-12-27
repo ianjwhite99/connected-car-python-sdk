@@ -12,6 +12,8 @@ Requirements
 
 - To make requests to a vehicle, the end user must have signed up for an account using [Ford Pass](https://owner.ford.com/fordpass/fordpass-sync-connect.html). These credentials will be used to authenticate your requests.
 
+<br></br>
+
 # Getting Started
 
 Import the ConnectedCar SDK
@@ -20,6 +22,7 @@ Import the ConnectedCar SDK
 import connectedcar
 ```
 
+<br></br>
 Create a new connectedcar `client`
 
 - Note the default ConnectedCar client_id is
@@ -29,6 +32,7 @@ Create a new connectedcar `client`
 client = connectedcar.AuthClient('9fb503e0-715b-47e8-adfd-ad4b7770f73b', None, None)
 ```
 
+<br></br>
 Use `client.get_user_access_token()` to exchange your user credentials for an **access object**. To make any vehicle data request to the Ford Sync Connect API, you'll need to give the SDK a valid **access token**.
 
 ```python
@@ -48,18 +52,23 @@ This access object will look like this:
 }
 ```
 
+<br></br>
 Access tokens will expire every 2 hours, so you'll need to constantly refresh them by calling `client.exchange_refresh_token()`
 
 ```python
 refreshToken = client.exchange_refresh_token(access['refresh_token'])
 ```
 
+<br></br>
 With your access token in hand, use `connectedcar.User()` to get a User object representing the user.
 
 ```python
-user = connectedcar.User(access['access_token'])
+user = connectedcar.User(access['access_token'], "US") # Region argument is only required if you live outside the United States.
 ```
 
+- Note: If your region is outside of the US you can pass different region parameters to the User class. Regions: (US, CA, EU, AU)
+
+<br></br>
 Use `user.vehicles()` to return an array of all the vehicles associated with a users account. The response will include the **vehicle vin**.
 
 ```python
@@ -71,25 +80,33 @@ for userVehicle in vehicles: # For each user vehicle
     vehicleList.append(userVehicle['vin'])
 ```
 
+<br></br>
 Now with a **vehicle vin** in hand, use `connectedcar.Vehicle()` to get a Vehicle object representing the user's vehicle.
 
 ```python
-currentVehicle = connectedcar.Vehicle(vehicleList[0], access['access_token']) # First Vehicle in vehicleList
+currentVehicle = connectedcar.Vehicle(vehicleList[0], access['access_token'], "US") # Region argument is only required if you live outside the United States.
 ```
 
+- Note: If your region is outside of the US you can pass different region parameters to the Vehicle class. Regions: (US, CA, EU, AU)
+
+<br></br>
 Now you can ask the car to do things, or ask it for some data! For example:
 
 ```python
 currentVehicle.start()
 ```
 
+<br></br>
+
 # Examples & Documentation
 
 For more examples on what you can do with Sync Connected car, see the [examples](/examples) folder or take a peek at the [documentation](https://ianjwhite99.github.io/connected-car-python-sdk/).
+<br></br>
 
 # Funding & Support
 
 If you are interested in supporting the development of my projects check out my [patreon](https://www.patreon.com/ianjwhite99) or [buy me a coffee](https://www.buymeacoffee.com/ianjwhite9).
+<br></br>
 
 # Disclaimer
 

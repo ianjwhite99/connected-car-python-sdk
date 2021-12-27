@@ -3,12 +3,21 @@ from . import const, requester
 
 class Api(object):
 
-    def __init__(self, access_token):
+    def __init__(self, access_token, region):
         """ Initialize a new Api object to directly make requests to Ford.
 
         Args:
             access_token (str): Ford access token
+            region (str): Define your region. Default is US.
         """
+        
+        regions = {
+            "US": "71A3AD0A-CF46-4CCF-B473-FC7FE5BC4592", # United States
+            "CA": "71A3AD0A-CF46-4CCF-B473-FC7FE5BC4592", # Canada
+            "EU": "1E8C7794-FF5F-49BC-9596-A1E0C86C5B19", # Europe
+            "AU": "5C80A6BB-CF0D-4A30-BDBF-FC804B5C1A98", # Australia
+        }
+
         self.access_token = access_token
         self.auth = {
             'auth-token': access_token,
@@ -17,7 +26,7 @@ class Api(object):
             'User-Agent': 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
             'Content-Type': 'application/json',
             'Accept-Encoding': 'gzip, deflate, br',
-            'Application-Id': const.APP_ID
+            'Application-Id': regions[region]
         }
 
     def _format(self, endpoint, context):
