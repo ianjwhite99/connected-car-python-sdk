@@ -101,12 +101,10 @@ currentVehicle.start()
 # Examples & Documentation
 
 For more examples on what you can do with Sync Connected car, see the [examples](/examples) folder or take a peek at the [documentation](https://ianjwhite99.github.io/connected-car-python-sdk/).
-<br></br>
 
 # Funding & Support
 
 If you are interested in supporting the development of my projects check out my [patreon](https://www.patreon.com/ianjwhite99) or [buy me a coffee](https://www.buymeacoffee.com/ianjwhite9).
-<br></br>
 
 # Disclaimer
 
