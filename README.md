@@ -66,7 +66,7 @@ With your access token in hand, use `connectedcar.User()` to get a User object r
 user = connectedcar.User(access['access_token'], "US") # Region argument is only required if you live outside the United States.
 ```
 
-- Note: If your region is outside of the US you can pass different region parameters to the User function. Regions: (US, CA, EU, AU)
+- Note: If your region is outside of the US you can pass different region parameters to the User class. Regions: (US, CA, EU, AU)
 
 <br></br>
 Use `user.vehicles()` to return an array of all the vehicles associated with a users account. The response will include the **vehicle vin**.
@@ -84,8 +84,10 @@ for userVehicle in vehicles: # For each user vehicle
 Now with a **vehicle vin** in hand, use `connectedcar.Vehicle()` to get a Vehicle object representing the user's vehicle.
 
 ```python
-currentVehicle = connectedcar.Vehicle(vehicleList[0], access['access_token']) # First Vehicle in vehicleList
+currentVehicle = connectedcar.Vehicle(vehicleList[0], access['access_token'], "US") # Region argument is only required if you live outside the United States.
 ```
+
+- Note: If your region is outside of the US you can pass different region parameters to the Vehicle class. Regions: (US, CA, EU, AU)
 
 <br></br>
 Now you can ask the car to do things, or ask it for some data! For example:
