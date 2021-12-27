@@ -4,7 +4,7 @@ from . import const
 
 class Vehicle(object):
 
-    def __init__(self, vehicle_id, access_token):
+    def __init__(self, vehicle_id, access_token, region="US"):
         """ Initialize a new Vehicle object to directly make requests to Ford.
 
         Args:
@@ -13,7 +13,7 @@ class Vehicle(object):
         """
         self.access_token = access_token
         self.vehicle_id = vehicle_id
-        self.api = Api(access_token)
+        self.api = Api(access_token, region)
 
     def status(self):
         """ GET Vehicle.status
