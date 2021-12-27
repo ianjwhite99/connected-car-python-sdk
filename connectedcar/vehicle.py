@@ -1,5 +1,6 @@
 from .api import Api
 from . import const
+import time
 
 
 class Vehicle(object):
@@ -333,19 +334,7 @@ class Vehicle(object):
 
         """
 
-        job_id = self.api.action(
-            'PUT',
-            const.API_URL,
-            'vehicles/v2/' +
-            self.vehicle_id +
-            '/engine/start').json()['commandId']
-        response = self.api.action(
-            'GET',
-            const.API_URL,
-            'vehicles/' +
-            self.vehicle_id +
-            '/engine/start/' +
-            job_id)
+        response = self.action_handler('/engine/start/', 'PUT')
         return response.json()
 
     def stop(self):
@@ -359,19 +348,7 @@ class Vehicle(object):
 
         """
 
-        job_id = self.api.action(
-            'DELETE',
-            const.API_URL,
-            'vehicles/v2/' +
-            self.vehicle_id +
-            '/engine/start').json()['commandId']
-        response = self.api.action(
-            'GET',
-            const.API_URL,
-            'vehicles/' +
-            self.vehicle_id +
-            '/engine/start/' +
-            job_id)
+        response = self.action_handler('/engine/start/', 'DELETE')
         return response.json()
 
     def lock(self):
@@ -385,19 +362,7 @@ class Vehicle(object):
 
         """
 
-        job_id = self.api.action(
-            'PUT',
-            const.API_URL,
-            'vehicles/v2/' +
-            self.vehicle_id +
-            '/doors/lock').json()['commandId']
-        response = self.api.action(
-            'GET',
-            const.API_URL,
-            'vehicles/' +
-            self.vehicle_id +
-            '/doors/lock/' +
-            job_id)
+        response = self.action_handler('/doors/lock/', 'PUT')
         return response.json()
 
     def unlock(self):
@@ -411,17 +376,35 @@ class Vehicle(object):
 
         """
 
-        job_id = self.api.action(
-            'DELETE',
-            const.API_URL,
-            'vehicles/v2/' +
-            self.vehicle_id +
-            '/doors/lock').json()['commandId']
-        response = self.api.action(
-            'GET',
-            const.API_URL,
-            'vehicles/' +
-            self.vehicle_id +
-            '/doors/lock/' +
-            job_id)
+        response = self.action_handler('/doors/lock/', 'DELETE')
         return response.json()
+
+    def action_handler(self, context, method):
+        if (method == "PUT" or method == "DELETE"):
+            job_id = self.api.action(method, const.API_URL, 'vehicles/v2/' + self.vehicle_id + context).json()['commandId']
+            if (job_id):
+                return self.action_status_check(context, job_id)
+            else:
+                raise Exception("No job id returned")
+
+
+    def action_status_check(self, context, job_id):
+        success = False
+        attempts = 0
+        while (not success):
+            response = self.api.action(
+                'GET',
+                const.API_URL,
+                'vehicles/' +
+                self.vehicle_id +
+                context +
+                job_id)
+            if (response.json()['status'] == 200):
+                success = True
+                return response
+            else:
+                attempts += 1
+                if (attempts >= 30):
+                    raise Exception("Timeout waiting for action to complete")
+                time.sleep(1)
+
