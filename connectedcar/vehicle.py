@@ -379,6 +379,15 @@ class Vehicle(object):
         response = self.action_handler('/doors/lock/', 'DELETE')
         return response.json()
 
+    """ PUT/DELETE Vehicle.action_handler
+
+        Returns:
+            Response: returns response from the action request to the Ford API
+
+        Raises:
+            Exception
+
+        """
     def action_handler(self, context, method):
         if (method == "PUT" or method == "DELETE"):
             job_id = self.api.action(method, const.API_URL, 'vehicles/v2/' + self.vehicle_id + context).json()['commandId']
@@ -388,6 +397,15 @@ class Vehicle(object):
                 raise Exception("No job id returned")
 
 
+    """ GET Vehicle.action_status_check
+
+        Returns:
+            Response: returns the current status of the action request
+
+        Raises:
+            Exception
+
+        """
     def action_status_check(self, context, job_id):
         success = False
         attempts = 0
