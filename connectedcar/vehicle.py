@@ -14,6 +14,7 @@ class Vehicle(object):
         """
         self.access_token = access_token
         self.vehicle_id = vehicle_id
+        self.region = region
         self.api = Api(access_token, region)
 
     def status(self):
@@ -134,6 +135,22 @@ class Vehicle(object):
 
         response = self.api.get(
             const.USER_URL, 'capability/v1/vehicles/' + self.vehicle_id)
+        return response.json()
+
+    def recall_status(self):
+        """ GET Vehicle.recall_status
+        Note: Currently only supported in US regions.
+
+        Returns:
+            Response: Vehicle recall status
+
+        Raises:
+            SyncException
+
+        """
+
+        response = self.api.get(
+            const.USER_URL, 'recall/v2/recalls?vin='+self.vehicle_id+'&language=EN&region=US&country=USA')
         return response.json()
 
     def vin(self):
