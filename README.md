@@ -28,8 +28,10 @@ Create a new connectedcar `client`
   `9fb503e0-715b-47e8-adfd-ad4b7770f73b`
 
 ```python
-client = connectedcar.AuthClient('9fb503e0-715b-47e8-adfd-ad4b7770f73b', None, None)
+client = connectedcar.AuthClient('9fb503e0-715b-47e8-adfd-ad4b7770f73b', None, None, None, 'US') # Region argument is only required if you live outside the United States.
 ```
+
+- Note: If your region is outside of the US you can pass different region parameters to the User class. Regions: (US, CA, EU, AU)
 
 Use `client.get_user_access_token()` to exchange your user credentials for an **access object**. To make any vehicle data request to the Ford Sync Connect API, you'll need to give the SDK a valid **access token**.
 
@@ -62,8 +64,6 @@ With your access token in hand, use `connectedcar.User()` to get a User object r
 user = connectedcar.User(access['access_token'], "US") # Region argument is only required if you live outside the United States.
 ```
 
-- Note: If your region is outside of the US you can pass different region parameters to the User class. Regions: (US, CA, EU, AU)
-
 Use `user.vehicles()` to return an array of all the vehicles associated with a users account. The response will include the **vehicle vin**.
 
 ```python
@@ -80,8 +80,6 @@ Now with a **vehicle vin** in hand, use `connectedcar.Vehicle()` to get a Vehicl
 ```python
 currentVehicle = connectedcar.Vehicle(vehicleList[0], access['access_token'], "US") # Region argument is only required if you live outside the United States.
 ```
-
-- Note: If your region is outside of the US you can pass different region parameters to the Vehicle class. Regions: (US, CA, EU, AU)
 
 Now you can ask the car to do things, or ask it for some data! For example:
 
