@@ -31,7 +31,7 @@ Create a new connectedcar `client`
 client = connectedcar.AuthClient('9fb503e0-715b-47e8-adfd-ad4b7770f73b', None, None, None, 'US') # Region argument is only required if you live outside the United States.
 ```
 
-- Note: If your region is outside of the US you can pass different region parameters to the User class. Regions: (US, CA, EU, AU)
+- Note: If your region is outside of the US you can pass different region parameters. Regions: (US, CA, EU, AU)
 
 Use `client.get_user_access_token()` to exchange your user credentials for an **access object**. To make any vehicle data request to the Ford Sync Connect API, you'll need to give the SDK a valid **access token**.
 
