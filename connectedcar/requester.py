@@ -23,8 +23,6 @@ def call(method, url, **kwargs):
         response = requests.request(method, url, timeout=310, **kwargs)
         code = response.status_code
 
-        print(response.json())
-
         if response.ok:
             return response
         elif code == 400:
