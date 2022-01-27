@@ -23,7 +23,7 @@ class Api(object):
             'auth-token': access_token,
             'Accept': '*/*',
             'Accept-Language': 'en-US',
-            'User-Agent': 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
+            'User-Agent': 'FordPass/5 CFNetwork/1327.0.4 Darwin/21.2.0',
             'Content-Type': 'application/json',
             'Accept-Encoding': 'gzip, deflate, br',
             'Application-Id': regions[region]

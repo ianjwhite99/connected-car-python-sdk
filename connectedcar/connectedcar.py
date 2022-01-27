@@ -49,7 +49,7 @@ class AuthClient(object):
             'Accept': '*/*',
             'Accept-Language': 'en-US',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'User-Agent': 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
+            'User-Agent': 'FordPass/5 CFNetwork/1327.0.4 Darwin/21.2.0',
             'Accept-Encoding': 'gzip, deflate, br',
         }
 
@@ -99,7 +99,7 @@ class AuthClient(object):
             'Accept': '*/*',
             'Accept-Language': 'en-US',
             'Content-Type': 'application/json',
-            'User-Agent': 'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
+            'User-Agent': 'FordPass/5 CFNetwork/1327.0.4 Darwin/21.2.0',
             'Accept-Encoding': 'gzip, deflate, br',
             'Application-Id': self.region
         }
