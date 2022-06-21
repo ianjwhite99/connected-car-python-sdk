@@ -30,9 +30,9 @@ class Vehicle(object):
 
         response = self.api.get(
             const.API_URL,
-            'vehicles/v4/' +
+            'vehicles/v5/' +
             self.vehicle_id +
-            '/status?lrdt=01-01-1970%2000:00:00')
+            '/status')
         return response.json()
 
     def refresh_status(self):
@@ -407,7 +407,7 @@ class Vehicle(object):
         """
     def action_handler(self, context, method):
         if (method == "PUT" or method == "DELETE"):
-            job_id = self.api.action(method, const.API_URL, 'vehicles/v2/' + self.vehicle_id + context).json()['commandId']
+            job_id = self.api.action(method, const.API_URL, 'vehicles/v5/' + self.vehicle_id + context).json()['commandId']
             if (job_id):
                 return self.action_status_check(context, job_id)
             else:

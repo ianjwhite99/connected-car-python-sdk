@@ -49,7 +49,7 @@ class AuthClient(object):
             'Accept': '*/*',
             'Accept-Language': 'en-US',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'User-Agent': 'FordPass/5 CFNetwork/1327.0.4 Darwin/21.2.0',
+            'User-Agent': 'FordPass/5 CFNetwork/1333.0.4 Darwin/21.5.0',
             'Accept-Encoding': 'gzip, deflate, br',
         }
 
@@ -69,11 +69,11 @@ class AuthClient(object):
             headers['Application-Id'] = self.region
 
             data = {
-                'code': response['access_token']
+                'ciToken': response['access_token']
             }        
 
             response = requester.call(
-                'PUT', 'https://api.mps.ford.com/api/oauth2/v1/token', headers=headers, data=json.dumps(data)).json()
+                'PUT', 'https://api.mps.ford.com/api/token/v2/cat-with-ci-access-token', headers=headers, data=json.dumps(data)).json()
 
             return response
         
@@ -99,7 +99,7 @@ class AuthClient(object):
             'Accept': '*/*',
             'Accept-Language': 'en-US',
             'Content-Type': 'application/json',
-            'User-Agent': 'FordPass/5 CFNetwork/1327.0.4 Darwin/21.2.0',
+            'User-Agent': 'FordPass/5 CFNetwork/1333.0.4 Darwin/21.5.0',
             'Accept-Encoding': 'gzip, deflate, br',
             'Application-Id': self.region
         }
@@ -109,5 +109,5 @@ class AuthClient(object):
         }
 
         response = requester.call(
-            'PUT', 'https://api.mps.ford.com/api/oauth2/v1/refresh', headers=headers, data=json.dumps(data)).json()
+            'PUT', 'https://api.mps.ford.com/api/token/v2/cat-with-refresh-token', headers=headers, data=json.dumps(data)).json()
         return response
