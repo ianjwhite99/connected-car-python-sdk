@@ -73,7 +73,7 @@ class AuthClient(object):
             }        
 
             response = requester.call(
-                'PUT', 'https://api.mps.ford.com/api/token/v2/cat-with-ci-access-token', headers=headers, data=json.dumps(data)).json()
+                'POST', 'https://api.mps.ford.com/api/token/v2/cat-with-ci-access-token', headers=headers, data=json.dumps(data)).json()
 
             return response
         
@@ -109,5 +109,5 @@ class AuthClient(object):
         }
 
         response = requester.call(
-            'PUT', 'https://api.mps.ford.com/api/token/v2/cat-with-refresh-token', headers=headers, data=json.dumps(data)).json()
+            'POST', 'https://api.mps.ford.com/api/token/v2/cat-with-refresh-token', headers=headers, data=json.dumps(data)).json()
         return response
