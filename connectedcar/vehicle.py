@@ -134,7 +134,7 @@ class Vehicle(object):
         """
 
         response = self.api.get(
-            const.USER_URL, 'capability/v1/vehicles/' + self.vehicle_id)
+            const.USER_URL, 'capability/v5/vehicles/' + self.vehicle_id)
         return response.json()
 
     def recall_status(self):
