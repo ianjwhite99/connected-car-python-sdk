@@ -44,9 +44,9 @@ class User(object):
         """
 
         response = self.api.get(
-            const.VEHICLE_URL,
-            'dashboard/v1/users/vehicles?country=USA&language=EN&region=US&skipRecall=true')
-        return response.json()
+            const.USER_URL,
+            'users/vehicles')
+        return response.json()['vehicles']['$values']
 
     def add_vehicle(self, vehicle_id):
         """ POST User.add_vehicle
