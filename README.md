@@ -72,7 +72,7 @@ vehicles = user.vehicles()
 vehicleList = [] # Array of vehicles
 
 for userVehicle in vehicles: # For each user vehicle
-    vehicleList.append(userVehicle['vin'])
+    vehicleList.append(userVehicle['VIN'])
 ```
 
 Now with a **vehicle vin** in hand, use `connectedcar.Vehicle()` to get a Vehicle object representing the user's vehicle.
