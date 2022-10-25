@@ -36,17 +36,20 @@ class User(object):
         return response.json()
 
     def vehicles(self):
-        """ GET User.vehicles
+        """ POST User.vehicles
 
         Returns:
             Response: User vehicle list
 
         """
 
-        response = self.api.get(
+        data = '{"dashboardRefreshRequest": "All", "smsWakeUpVIN": ""}'
+        response = self.api.post(
             const.USER_URL,
-            'users/vehicles')
-        return response.json()['vehicles']['$values']
+            'expdashboard/v1/details', data)
+
+        print(response)
+        return response.json()['userVehicles']['vehicleDetails']
 
     def add_vehicle(self, vehicle_id):
         """ POST User.add_vehicle
