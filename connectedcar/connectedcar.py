@@ -22,7 +22,7 @@ class AuthClient(object):
     defaultHeaders = {
         "Accept": "*/*",
         "Accept-Language": "en-us",
-        "User-Agent": "FordPass/5 CFNetwork/1197 Darwin/20.0.0",
+        "User-Agent": "FordPass/24 CFNetwork/1399 Darwin/22.1.0",
         "Accept-Encoding": "gzip, deflate, br",
     }
 
@@ -188,7 +188,7 @@ class AuthClient(object):
             'Accept': '*/*',
             'Accept-Language': 'en-US',
             'Content-Type': 'application/json',
-            'User-Agent': 'FordPass/5 CFNetwork/1333.0.4 Darwin/21.5.0',
+            'User-Agent': 'FordPass/24 CFNetwork/1399 Darwin/22.1.0',
             'Accept-Encoding': 'gzip, deflate, br',
             'Application-Id': self.region
         }
