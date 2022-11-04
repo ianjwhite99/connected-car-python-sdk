@@ -32,7 +32,7 @@ class TestRequester(unittest.TestCase):
         connectedcar.requester.call('GET', self.URL)
         self.assertEqual(
             responses.calls[0].request.headers['User-Agent'],
-            'fordpass-na/353 CFNetwork/1121.2.2 Darwin/19.3.0',
+            'FordPass/24 CFNetwork/1399 Darwin/22.1.0',
         )
 
     @responses.activate

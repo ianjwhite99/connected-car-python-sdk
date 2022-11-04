@@ -17,7 +17,7 @@ def call(method, url, **kwargs):
 
     if "headers" not in kwargs:
         kwargs["headers"] = {}
-    kwargs['headers']['User-Agent'] = 'FordPass/5 CFNetwork/1327.0.4 Darwin/21.2.0'
+    kwargs['headers']['User-Agent'] = 'FordPass/24 CFNetwork/1399 Darwin/22.1.0'
 
     try:
         response = requests.request(method, url, timeout=310, **kwargs)
