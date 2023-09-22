@@ -165,7 +165,7 @@ class Vehicle(object):
         """
 
         json = self.status()
-        return {"data": json['vehiclestatus']['vin']}
+        return {"data": json['vehiclestatus']['VIN']}
 
     def odometer(self):
         """ GET Vehicle.odometer
@@ -396,7 +396,8 @@ class Vehicle(object):
         response = self.action_handler('/doors/lock/', 'DELETE')
         return response.json()
 
-    """ PUT/DELETE Vehicle.action_handler
+    def action_handler(self, context, method):
+        """ PUT/DELETE Vehicle.action_handler
 
         Returns:
             Response: returns response from the action request to the Ford API
@@ -405,7 +406,6 @@ class Vehicle(object):
             Exception
 
         """
-    def action_handler(self, context, method):
         if (method == "PUT" or method == "DELETE"):
             job_id = self.api.action(method, const.API_URL, 'vehicles/v5/' + self.vehicle_id + context).json()['commandId']
             if (job_id):
@@ -413,8 +413,8 @@ class Vehicle(object):
             else:
                 raise Exception("No job id returned")
 
-
-    """ GET Vehicle.action_status_check
+    def action_status_check(self, context, job_id):
+        """ GET Vehicle.action_status_check
 
         Returns:
             Response: returns the current status of the action request
@@ -423,7 +423,6 @@ class Vehicle(object):
             Exception
 
         """
-    def action_status_check(self, context, job_id):
         success = False
         attempts = 0
         while (not success):
@@ -443,3 +442,16 @@ class Vehicle(object):
                     raise Exception("Timeout waiting for action to complete")
                 time.sleep(1)
 
+    def get_chargeLogs(self):
+        """GET energy transfer logs for a specific device.
+
+        Args:
+            vin (str): The Vehicle Identification Number (VIN).
+
+        Returns:
+            dict: Energy transfer logs response from the API.
+        """
+
+        response = self.api.get(
+            const.USER_URL, '/electrification/experiences/v1/devices/' + self.vehicle_id + '/energy-transfer-logs/')
+        return response.json()
