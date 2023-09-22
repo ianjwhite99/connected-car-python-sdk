@@ -95,6 +95,8 @@ For more examples on what you can do with Sync Connected car, see the [examples]
 
 If you are interested in supporting the development of my projects check out my [patreon](https://www.patreon.com/ianjwhite99) or [buy me a coffee](https://www.buymeacoffee.com/ianjwhite9).
 
+Support for the updates by SquidBytes can be found with [buy me a coffee](https://www.buymeacoffee.com/SquidBytes)
+
 ## Disclaimer
 
 THIS CODEBASE IS NOT ENDORSED, AFFILIATED, OR ASSOCIATED WITH FORD, FOMOCO OR THE FORD MOTOR COMPANY.
