@@ -95,6 +95,14 @@ For more examples on what you can do with Sync Connected car, see the [examples]
 
 If you are interested in supporting the development of my projects check out my [patreon](https://www.patreon.com/ianjwhite99) or [buy me a coffee](https://www.buymeacoffee.com/ianjwhite9).
 
+Support for the updates by SquidBytes can be found with [buy me a coffee](https://www.buymeacoffee.com/SquidBytes)
+
 ## Disclaimer
 
 THIS CODEBASE IS NOT ENDORSED, AFFILIATED, OR ASSOCIATED WITH FORD, FOMOCO OR THE FORD MOTOR COMPANY.
+
+IT IS KNOWN THAT FORD MAY LOCK THE ACCOUNT ASSOCIATED TO THE USER FOR UNAUTHORIZED API/THIRD PARTY ACCESS
+
+IT IS ALSO KNOWN THAT THEY MAY LOCK YOUR ACCOUNT OUT IF YOU'RE EMAIL CONTAINS A '+' SEE [FordPass HomeAssistant Account Warning](https://github.com/itchannel/fordpass-ha#account-warning-sep-2023)
+
+IT IS RECOMMENDED TO MAKE A SECONDARY ACCOUNT TO USE THE API
