@@ -48,7 +48,7 @@ class Vehicle(object):
 
         response = self.api.put(
             const.API_URL,
-            'vehicles/v2/' +
+            'vehicles/v5/' +
             self.vehicle_id +
             '/status', None)
         return response.json()
